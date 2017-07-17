@@ -21,12 +21,6 @@ def echo_response(message):
   if message["type"] == "message":
     if "s8" and "capture" in message["text"]:
 
-      r = requests.get("http://sjdesignstudio.com/samsung_bot")
-      bitcoin_price = r.json()["last"]
-     msg4 = "bitcoin price is %s" % bitcoin_price
-      print(msg4)
-      ReplyToActivity(fill=message,
-                    text=msg4).send()
       
       msg = "A screenshot is a snapshot of your device screen saved as a photo. There are several ways to capture screenshots on your device. After the screenshots are captured, they will be automatically saved to the Gallery. If you want to know how to capture the screen on your galaxy S8 & S8+, click the link below."
       print(msg)
