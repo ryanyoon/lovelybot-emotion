@@ -18,11 +18,11 @@ def echo_response(message):
   print(message)
   
   if message["type"] == "message":
-    if "s8" in message["text"]:
+    if "s8" & "capture" in message["text"]:
 
       r = requests.get("https://api.korbit.co.kr/v1/ticker")
       bitcoin_price = r.json()["last"]
-      msg = "bitcoin price is %s" % bitcoin_price
+      msg = "A screenshot is a snapshot of your device screen saved as a photo. There are several ways to capture screenshots on your device. After the screenshots are captured, they will be automatically saved to the Gallery."
       print(msg)
       ReplyToActivity(fill=message,
                     text=msg).send()
