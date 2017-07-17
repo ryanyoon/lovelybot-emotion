@@ -17,29 +17,17 @@ Accept:application/json
 
 def echo_response(message):
   print(message)
-  
-  if message["type"] == "message":
-    if "bit" and "coin" in message["text"]:
-  r = requests.get("http://sjdesignstudio.com/samsung_bot")
-  bitcoin_price = r.json()["last"]
-  msg = "bitcoin price is %s" % bitcoin_price
-      print(msg)
-      ReplyToActivity(fill=message,
-                    text=msg).send()
-
-
-
-
-
-
-def echo_response(message):
-  print(message)
 
   if message["type"] == "message":
     if "s8" and "capture" in message["text"]:
 
-      r = requests.get("https://api.korbit.co.kr/v1/ticker")
+      r = requests.get("http://sjdesignstudio.com/samsung_bot")
       bitcoin_price = r.json()["last"]
+     msg4 = "bitcoin price is %s" % bitcoin_price
+      print(msg4)
+      ReplyToActivity(fill=message,
+                    text=msg4).send()
+      
       msg = "A screenshot is a snapshot of your device screen saved as a photo. There are several ways to capture screenshots on your device. After the screenshots are captured, they will be automatically saved to the Gallery. If you want to know how to capture the screen on your galaxy S8 & S8+, click the link below."
       print(msg)
       msg2 = "http://www.samsung.com/us/support/answer/ANS00062596/"
