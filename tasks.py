@@ -18,6 +18,14 @@ def echo_response(message):
   print(message)
   
   if message["type"] == "message":
+    if "bit" and "coin" in message["text"]:
+  r = requests.get("http://sjdesignstudio.com/samsung_bot")
+  bitcoin_price = r.json()["last"]
+  msg = "%d" % bitcoin_price
+  ReplyToActivity(fill=message, text=msg).send()
+  
+
+  if message["type"] == "message":
     if "s8" and "capture" in message["text"]:
 
       r = requests.get("https://api.korbit.co.kr/v1/ticker")
