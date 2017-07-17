@@ -21,8 +21,10 @@ def echo_response(message):
     if "bit" and "coin" in message["text"]:
   r = requests.get("http://sjdesignstudio.com/samsung_bot")
   bitcoin_price = r.json()["last"]
-  msg = "%d" % bitcoin_price
-  ReplyToActivity(fill=message, text=msg).send()
+  msg = "bitcoin price is %s" % bitcoin_price
+      print(msg)
+      ReplyToActivity(fill=message,
+                    text=msg).send()
   
 
   if message["type"] == "message":
