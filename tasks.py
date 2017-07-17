@@ -14,6 +14,7 @@ Accept:application/json
 
 # https://api.korbit.co.kr/v1/ticker
 
+
 def echo_response(message):
   print(message)
   
@@ -25,7 +26,14 @@ def echo_response(message):
       print(msg)
       ReplyToActivity(fill=message,
                     text=msg).send()
-  
+
+
+
+
+
+
+def echo_response(message):
+  print(message)
 
   if message["type"] == "message":
     if "s8" and "capture" in message["text"]:
