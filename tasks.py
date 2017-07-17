@@ -22,35 +22,14 @@ def echo_response(message):
 
       r = requests.get("https://api.korbit.co.kr/v1/ticker")
       bitcoin_price = r.json()["last"]
-      msg = "A screenshot is a snapshot of your device screen saved as a photo. There are several ways to capture screenshots on your device. After the screenshots are captured, they will be automatically saved to the Gallery."
+      msg = "A screenshot is a snapshot of your device screen saved as a photo. There are several ways to capture screenshots on your device. After the screenshots are captured, they will be automatically saved to the Gallery.\n If you want to know how to capture the screen on your galaxy S8 & S8+, click the link below."
       print(msg)
-      ReplyToActivity(fill=message,
-                    text=msg).send()
+      msg2 = "http://www.samsung.com/us/support/answer/ANS00062596/"
+      print(msg2)
+      ReplyToActivity(fill=message, text=msg).send()
+      ReplyToActivity(fill=message, text=msg2).send()      
     else:
-      data =  {
-        "documents": [
-          {
-            "language": "en",
-            "id": "1",
-            "text": message["text"]
-          }
-        ]
-      }
-      headers = {'Ocp-Apim-Subscription-Key': '4cfe6f744f1b486db3fa83d874bafdd9',
-                 'Content-Type': 'application/json',
-                 'Accept': 'application/json',
-                 }
-
-      r = requests.post("https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment",
-                        data=json.dumps(data),
-                        headers=headers)
-      emo_score = r.json()["documents"][0]["score"]
-      msg = "emotion score is %s\n" % emo_score
-
-      if emo_score > 0.5:
-        msg = msg + "You look happy!"
-      else:
-        msg = msg + "You look unhappy.."
+      msg = "I'm sorry. Please enter product name and keyword what are wondering."
 
       print(msg)
 
