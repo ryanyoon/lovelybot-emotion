@@ -18,7 +18,7 @@ def echo_response(message):
   print(message)
   
   if message["type"] == "message":
-    if "s8" & "capture" in message["text"]:
+    if "s8" and "capture" in message["text"]:
 
       r = requests.get("https://api.korbit.co.kr/v1/ticker")
       bitcoin_price = r.json()["last"]
