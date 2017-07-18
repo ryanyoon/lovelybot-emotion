@@ -67,13 +67,16 @@ def Program():
         else:
             continue
         while True:
-            Name=input("\n고객님의 성함을 입력하십시오: ")
+            def echo_response(test):
+            print(test);
+            Name=test
             if not Name:
                 break
             entry=findEntry(fileName,Name)
             if entry!=None:
                 fmt="\n{이름}님이 주문하신 {제품명}는 {주소} {주소2}로 배송되며 전화번호는 {폰번호}입니다."
-                print(fmt.format(이름=entry["이름"], 제품명="제품명",주소=entry["주소"], 주소2=entry["주소2"], 폰번호=entry["폰번호"]))
+                print()
+            ReplyToActivity(fill=message, text="fmt.format(이름=entry["이름"], 제품명="제품명",주소=entry["주소"], 주소2=entry["주소2"], 폰번호=entry["폰번호"])).send()
             else:
                 print("\n그 성함을 가진 고객은 목록에 없습니다.")
                 ReplyToActivity(fill=message, text="\n그 성함을 가진 고객은 목록에 없습니다.").send()
