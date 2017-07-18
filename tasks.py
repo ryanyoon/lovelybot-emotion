@@ -14,11 +14,6 @@ Accept:application/json
 
 # https://api.korbit.co.kr/v1/ticker
 
-msg = "Hi, . What can I help you?"
-print(msg)
-ReplyToActivity(fill=message,
-                    text=msg).send()
-
 
 def echo_response(message):
   print(message)
