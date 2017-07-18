@@ -76,6 +76,7 @@ def Program():
                 print(fmt.format(이름=entry["이름"], 제품명="제품명",주소=entry["주소"], 주소2=entry["주소2"], 폰번호=entry["폰번호"]))
             else:
                 print("\n그 성함을 가진 고객은 목록에 없습니다.")
+                ReplyToActivity(fill=message, text="\n그 성함을 가진 고객은 목록에 없습니다.").send()
     return  
   
   
@@ -96,7 +97,10 @@ def echo_response(message):
     else:
       msg = "Sorry. I can't understand. Please enter the product name with the keyword. For example, you can ask me like \"S8 screen capture\" or \"How can I capture my screen on my S8?\"."
       print(msg)
+        
 
 
       ReplyToActivity(fill=message,
                       text=msg).send()
+    
+    ReplyToActivity(fill=message, text="\n그 성함을 가진 고객은 목록에 없습니다.").send()
