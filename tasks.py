@@ -50,7 +50,8 @@ def findEntry(fileName,Name,delimiter=","):
 
 def echo_response(message):
   print(message)
-  
+
+  if message["type"] == "message":
   Name=message
   entry=findEntry(fileName,Name)
   fmt="\n{이름}님이 주문하신 {제품명}는 {주소} {주소2}로 배송되며 전화번호는 {폰번호}입니다."
