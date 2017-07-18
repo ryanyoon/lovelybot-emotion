@@ -28,7 +28,7 @@ def echo_response(message):
       ReplyToActivity(fill=message, text=msg2).send() 
       ReplyToActivity(fill=message, text=msg4).send()
     else:
-      msg = "I'm sorry. Please enter the product name and keyword. For example, you can ask me like \"S8 screen capture\" or \"How can I capture my screen on my S8?\"."
+      msg = "Sorry. I can't understand. Please enter the product name with the keyword. For example, you can ask me like \"S8 screen capture\" or \"How can I capture my screen on my S8?\"."
       print(msg)
 
 
