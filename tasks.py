@@ -11,7 +11,6 @@ import sys
 """
 POST
 https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment
-
 Ocp-Apim-Subscription-Key:4cfe6f744f1b486db3fa83d874bafdd9
 Content-Type:application/json
 Accept:application/json
@@ -43,36 +42,13 @@ def findEntry(fileName,Name,delimiter=","):
     if NoFile:
         print("파일을 찾을 수 없습니다.")
     return Entry
-def Program():
-    while True:
-        print("탐색할 파일 목록:")
-        print("")
-        print ("(1) 내 컴퓨터에 있는 파일")
-        print ("(2) 인터넷에 있는 파일")
-        print("")
-        NumStr=input("번호를 선택하세요[1,2]: ")
-        if not NumStr:
-            break
-        BadInput=False
-        try:
-            NumChoice=int(NumStr)
-        except:
-            BadInput=True
-        if BadInput:
-            continue
-        if NumChoice==1:
-            fileName="aaa.cvs"
-        elif NumChoice==2:
-            fileName="https://christianlike-super.000webhostapp.com/smalls/remote-csv/aaa.cvs"
-        else:
-            continue
-        while True:
+def echo_response(message):
             def echo_response(test):
             print(test);
             Name=test
             if not Name:
                 break
-            entry=findEntry(fileName,Name)
+            entry=findEntry(https://christianlike-super.000webhostapp.com/smalls/remote-csv/aaa.cvs,Name)
             if entry!=None:
                 fmt="\n{이름}님이 주문하신 {제품명}는 {주소} {주소2}로 배송되며 전화번호는 {폰번호}입니다."
                 print()
@@ -86,6 +62,19 @@ def Program():
       
 def echo_response(message):
   print(message)
+  Name=message
+  if not Name:
+                break
+            entry=findEntry(https://christianlike-super.000webhostapp.com/smalls/remote-csv/aaa.cvs,Name)
+            if entry!=None:
+                fmt="\n{이름}님이 주문하신 {제품명}는 {주소} {주소2}로 배송되며 전화번호는 {폰번호}입니다."
+                print()
+            ReplyToActivity(fill=message, text="fmt.format(이름=entry["이름"], 제품명="제품명",주소=entry["주소"], 주소2=entry["주소2"], 폰번호=entry["폰번호"])).send()
+            else:
+                print("\n그 성함을 가진 고객은 목록에 없습니다.")
+                ReplyToActivity(fill=message, text="\n그 성함을 가진 고객은 목록에 없습니다.").send()
+    return  
+
 
   if message["type"] == "message":
     if "s8" and "capture" in message["text"]:
