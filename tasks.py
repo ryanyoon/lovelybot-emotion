@@ -1,6 +1,11 @@
 from microsoftbotframework import ReplyToActivity
 import requests
 import json
+import csv
+import os
+import codecs
+from urllib.request import urlopen
+import sys
 
 # https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment
 """
@@ -14,7 +19,67 @@ Accept:application/json
 
 # https://api.korbit.co.kr/v1/ticker
 
-
+def normalize_path(filename):
+    if filename.startswith("http:") or filename.startswith("https:"):
+        return filename
+    else:
+        return "file://"+os.path.abspath(filename)
+def findEntry(fileName,Name,delimiter=","):
+    print("finding ... ",end="")
+    sys.stdout.flush() # 표준 입력 버퍼를 출력하고 버퍼를 비움
+    NoFile=False
+    Entry=None
+    fileName=normalize_path(fileName)
+    try:
+        with urlopen(fileName) as  ftpstream:
+            csvfile = csv.DictReader(codecs.iterdecode(ftpstream, 'utf-8'),delimiter=delimiter)
+            for e in csvfile:
+                if e["이름"] == Name:
+                    Entry=e
+                    break
+    except:
+        NoFile=True
+    print(" 탐색 완료")
+    if NoFile:
+        print("파일을 찾을 수 없습니다.")
+    return Entry
+def Program():
+    while True:
+        print("탐색할 파일 목록:")
+        print("")
+        print ("(1) 내 컴퓨터에 있는 파일")
+        print ("(2) 인터넷에 있는 파일")
+        print("")
+        NumStr=input("번호를 선택하세요[1,2]: ")
+        if not NumStr:
+            break
+        BadInput=False
+        try:
+            NumChoice=int(NumStr)
+        except:
+            BadInput=True
+        if BadInput:
+            continue
+        if NumChoice==1:
+            fileName="aaa.cvs"
+        elif NumChoice==2:
+            fileName="https://christianlike-super.000webhostapp.com/smalls/remote-csv/aaa.cvs"
+        else:
+            continue
+        while True:
+            Name=input("\n고객님의 성함을 입력하십시오: ")
+            if not Name:
+                break
+            entry=findEntry(fileName,Name)
+            if entry!=None:
+                fmt="\n{이름}님이 주문하신 {제품명}는 {주소} {주소2}로 배송되며 전화번호는 {폰번호}입니다."
+                print(fmt.format(이름=entry["이름"], 제품명="제품명",주소=entry["주소"], 주소2=entry["주소2"], 폰번호=entry["폰번호"]))
+            else:
+                print("\n그 성함을 가진 고객은 목록에 없습니다.")
+    return  
+  
+  
+      
 def echo_response(message):
   print(message)
 
