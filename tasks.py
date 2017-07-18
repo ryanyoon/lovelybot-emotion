@@ -21,12 +21,15 @@ Accept:application/json
 fileName="https://christianlike-super.000webhostapp.com/smalls/remote-csv/aaa.cvs"
 
 def normalize_path(filename):
+    fileName="https://christianlike-super.000webhostapp.com/smalls/remote-csv/aaa.cvs"
     if filename.startswith("http:") or filename.startswith("https:"):
         return filename
     else:
         return "file://"+os.path.abspath(filename)
-
+    
+fileName="https://christianlike-super.000webhostapp.com/smalls/remote-csv/aaa.cvs"
 def findEntry(fileName,Name,delimiter=","):
+    fileName="https://christianlike-super.000webhostapp.com/smalls/remote-csv/aaa.cvs"
     print("탐색 중 ... ",end="")
     sys.stdout.flush() # 표준 입력 버퍼를 출력하고 버퍼를 비움
     NoFile=False
@@ -47,14 +50,15 @@ def findEntry(fileName,Name,delimiter=","):
     return Entry
   
   
-
+fileName="https://christianlike-super.000webhostapp.com/smalls/remote-csv/aaa.cvs"
 def echo_response(message):
   print(message)
-
+  fileName="https://christianlike-super.000webhostapp.com/smalls/remote-csv/aaa.cvs"
   if message["type"] == "message":
   Name=message
   entry=findEntry(fileName,Name)
   fmt="\n{이름}님이 주문하신 {제품명}는 {주소} {주소2}로 배송되며 전화번호는 {폰번호}입니다."
+  print(fmt)
   ReplyToActivity(fill=message, text=fmt.format(이름=entry["이름"], 제품명="제품명",주소=entry["주소"], 주소2=entry["주소2"], 폰번호=entry["폰번호"])).send()
 
   
